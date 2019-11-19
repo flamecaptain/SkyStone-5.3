@@ -52,8 +52,7 @@ import java.util.List;
  * is explained below.
  */
 @TeleOp(name = "Concept: TensorFlow Object Detection Webcam", group = "Concept")
-@Disabled
-public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
+    public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Stone";
     private static final String LABEL_SECOND_ELEMENT = "Skystone";
@@ -72,7 +71,7 @@ public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
      */
     private static final String VUFORIA_KEY =
 
-            " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
+            "ARAcHmb/////AAABmdKWGmLaVkfunxi3zHut0ixX66ybfomfYaggBxYfNEH1ykXbDcszSgoU4qPwWWcO8e2rArv5bsK2ilefGCb+42Ijr/GZXbIsuxQSzzp7qHiFR71MjmozfNiaRCzUIPL5Tbit26z90iKMHkgxudhCpRqCmJiHghvLs9wGjY83MNLNrFAMiLfoKQX3Ao4iOFXm4qHr1h1ZlD2osVt0hMlF9w0jH9u+mLH8p60550r2zQIdmDK18ufuYbbCnSOwGBrdfpr+IE0Qj2zjENGftNEwhI2sI2L8eYr0994k86wt17oHs8mn4yRbJmIYhjCO+G2jv1o3PMrRhI0fzKJq1qQb6BIrikP9LKXPDlpFa5tMA4vQ";
 
     /**
      * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
@@ -165,7 +164,7 @@ public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
             "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
        tfodParameters.minimumConfidence = 0.8;
-       tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
+       tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia     );
        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
     }
 }
