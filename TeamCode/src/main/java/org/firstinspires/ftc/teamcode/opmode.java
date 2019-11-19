@@ -23,7 +23,11 @@ public class opmode extends LinearOpMode {
         waitForStart();
         while(opModeIsActive())
         {
-            gamepad1.
+            if(gamepad1.left_stick_y > .5 && gamepad1.left_stick_y > gamepad1.left_stick_x){
+                backLeft.setPower(1);
+                backRight.setPower(1);
+                    
+            }
         }
     }
 }
