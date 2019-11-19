@@ -7,7 +7,7 @@ import org.firstinspires.ftc.robotcore.external.stream.*;
 
 @TeleOp
 public class opmode extends LinearOpMode {
-    private DcMotor   frontLeft, frontRight, backLeft, backRight;
+    private DcMotor   frontLeft, frontRight, backLeft, backRight, clawRaise;
     private Servo clawGrab;
     public void runOpMode()
     {
@@ -15,9 +15,11 @@ public class opmode extends LinearOpMode {
         backLeft = hardwareMap.dcMotor.get("backLeft");
         frontRight = hardwareMap.dcMotor.get("frontRight");
         frontLeft = hardwareMap.dcMotor.get("frontLeft");
+        clawGrab = hardwareMap.servo.get("clawGrab");
+        clawRaise = hardwareMap.dcMotor.get("clawRaise");
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        
+
         waitForStart();
         while(opModeIsActive())
         {
