@@ -29,7 +29,7 @@
 
 package org.firstinspires.ftc.robotcontroller.external.samples;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import java.util.List;
@@ -50,7 +50,6 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
  * is explained below.
  */
 @TeleOp(name = "Concept: TensorFlow Object Detection Webcam", group = "Concept")
-@Disabled
 public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Stone";
@@ -69,12 +68,11 @@ public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
      * and paste it in to your code on the next line, between the double quotes.
      */
     private static final String VUFORIA_KEY =
-            " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
-
-    /**
-     * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
-     * localization engine.
-     */
+            "ARAcHmb/////AAABmdKWGmLaVkfunxi3zHut0ixX66ybfomfYaggBxYfNEH1ykXbDcszSgoU4qPwWWcO8e2rArv5bsK2ilefGCb+42Ijr/GZXbIsuxQSzzp7qHiFR71MjmozfNiaRCzUIPL5Tbit26z90iKMHkgxudhCpRqCmJiHghvLs9wGjY83MNLNrFAMiLfoKQX3Ao4iOFXm4qHr1h1ZlD2osVt0hMlF9w0jH9u+mLH8p60550r2zQIdmDK18ufuYbbCnSOwGBrdfpr+IE0Qj2zjENGftNEwhI2sI2L8eYr0994k86wt17oHs8mn4yRbJmIYhjCO+G2jv1o3PMrRhI0fzKJq1qQb6BIrikP9LKXPDlpFa5tMA4vQ";
+        /**
+         * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
+         * localization engine.
+         */
     private VuforiaLocalizer vuforia;
 
     /**
