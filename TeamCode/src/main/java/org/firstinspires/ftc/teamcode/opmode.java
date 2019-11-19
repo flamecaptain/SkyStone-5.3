@@ -23,5 +23,7 @@ public class opmode extends LinearOpMode {
         waitForStart();
         while(opModeIsActive())
         {
+            gamepad1.
+        }
     }
 }
