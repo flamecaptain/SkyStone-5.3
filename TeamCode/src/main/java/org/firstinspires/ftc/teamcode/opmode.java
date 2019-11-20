@@ -45,7 +45,7 @@ public class opmode extends LinearOpMode {
                 frontLeft.setPower(-1);
                 frontRight.setPower(-1);
             }
-            if(gamepad1.left_stick_x < -.5 && gamepad1.left_stick_x < gamepad1.left_stick_y)
+            if(gamepad1.left_stick_x < -.5 && gamepad1.left_stick_x < gamepad1.left_stick_y){
                 backLeft.setPower(-1);
                 backRight.setPower(-1);
                 frontLeft.setPower(1);
@@ -68,5 +68,6 @@ public class opmode extends LinearOpMode {
             frontRight.setPower(0);
             frontLeft.setPower(0);
             telemetry.update();
+        }
     }
 }
