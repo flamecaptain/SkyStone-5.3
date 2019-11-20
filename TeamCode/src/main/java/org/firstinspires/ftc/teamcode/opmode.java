@@ -19,49 +19,52 @@ public class opmode extends LinearOpMode {
         clawRaise = hardwareMap.dcMotor.get("clawRaise");
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        final String[] driver_action = new String[]{
-                "forward drive","backwards drive","slide right","slide left",
-                "turn left", "turn right"
-        };
+        telemetry.addLine("Driver_control");
+        telemetry.log().setCapacity(1);
         waitForStart();
         while(opModeIsActive())
         {
-            telemetry.addLine("Driver_Actions : ");
             if(gamepad1.left_stick_y > .5 && gamepad1.left_stick_y > gamepad1.left_stick_x){
                 backLeft.setPower(1);
                 backRight.setPower(1);
                 frontRight.setPower(1);
                 frontLeft.setPower(1);
+                telemetry.log().add("Forward_Drive");
             }
             if(gamepad1.left_stick_y < -.5 && gamepad1.left_stick_y < gamepad1.left_stick_x){
                 backLeft.setPower(-1);
                 backRight.setPower(-1);
                 frontLeft.setPower(-1);
                 frontRight.setPower(-1);
+                telemetry.log().add("Backward_Drive");
             }
             if(gamepad1.left_stick_x > .5 && gamepad1.left_stick_x > gamepad1.left_stick_y){
                 backLeft.setPower(1);
                 backRight.setPower(1);
                 frontLeft.setPower(-1);
                 frontRight.setPower(-1);
+                telemetry.log().add("Right_Drive");
             }
             if(gamepad1.left_stick_x < -.5 && gamepad1.left_stick_x < gamepad1.left_stick_y){
                 backLeft.setPower(-1);
                 backRight.setPower(-1);
                 frontLeft.setPower(1);
                 frontRight.setPower(1);
+                telemetry.log().add("Left_Drive");
             }
             if(gamepad1.right_stick_x > .5 && gamepad1.right_stick_x > gamepad1.left_stick_y && gamepad1.right_stick_x > gamepad1.left_stick_x){
                 backLeft.setPower(-1);
                 backRight.setPower(1);
                 frontLeft.setPower(-1);
                 frontRight.setPower(1);
+                telemetry.log().add("Right_turn");
             }
             if(gamepad1.right_stick_x < -.5 && gamepad1.right_stick_x < gamepad1.left_stick_y && gamepad1.right_stick_x < gamepad1.left_stick_x){
                 backLeft.setPower(1);
                 backRight.setPower(-1);
                 frontLeft.setPower(1);
                 frontRight.setPower(-1);
+                telemetry.log().add("Left_turn");
             }
             backRight.setPower(0);
             backLeft.setPower(0);
