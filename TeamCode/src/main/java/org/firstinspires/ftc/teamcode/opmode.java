@@ -56,7 +56,6 @@ public class opmode extends LinearOpMode {
                 setPower(gamepad1.right_stick_x / Math.abs(gamepad1.right_stick_x) * -1.0);
             setPower(0);
             telemetry.update();
-            
         }
     }
 }
