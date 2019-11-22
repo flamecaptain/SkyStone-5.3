@@ -66,11 +66,11 @@ public class opmode extends LinearOpMode {
                 setPowerSlide(gamepad1.left_stick_x / Math.abs(gamepad1.left_stick_x));
                 if(gamepad1.left_stick_x > 0)
                 {
-                    //sliding ___?
+                    //sliding right
                 }
                 else if(gamepad1.left_stick_x < 0)
                 {
-                    //sliding ___?
+                    //sliding left
                 }
             }
             if(Math.abs(gamepad1.right_stick_x) > 0.5 && Math.abs(gamepad1.right_stick_x) > Math.abs(gamepad1.left_stick_y) && Math.abs(gamepad1.right_stick_x) > Math.abs(gamepad1.left_stick_x)) {
