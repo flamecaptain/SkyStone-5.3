@@ -9,34 +9,20 @@ import org.firstinspires.ftc.robotcore.external.stream.*;
 public class opmode extends LinearOpMode {
     private DcMotor   frontLeft, frontRight, backLeft, backRight, clawRaise;
     private Servo clawGrab;
+
     /**
-     * Sets all motors to the input power n
-     * @param n
+     *
+     * @param bl back left power
+     * @param br back right power
+     * @param fl front left power
+     * @param fr front right power
      */
-    private void setPower(double n)
+    private void setPower(double bl, double br, double fl, double fr)
     {
-        backLeft.setPower(n);
-        backRight.setPower(n);
-        frontLeft.setPower(n);
-        frontRight.setPower(n);
-    }
-    private void setPowerSlide(double n)
-    {
-        backLeft.setPower(n);
-        backRight.setPower(n);
-        frontLeft.setPower(n * -1.0);
-        frontRight.setPower(n * -1.0);
-    }
-    /**
-     * Sets the left two motors to the input power n and the right two motors to the negative input power n
-     * @param n
-     */
-    private void setPowerTurn(double n)
-    {
-        backLeft.setPower(n);
-        backRight.setPower(n * -1.0);
-        frontLeft.setPower(n);
-        frontRight.setPower(n * -1.0);
+        backLeft.setPower(bl);
+        backRight.setPower(br);
+        frontLeft.setPower(fl);
+        frontRight.setPower(fr);
     }
     public void runOpMode()
     {
@@ -50,9 +36,10 @@ public class opmode extends LinearOpMode {
         frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         waitForStart();
         while(opModeIsActive()) {
-            telemetry.addLine("Driver_Actions : ");
+            telemetry.addLine("Driver_Actions: ");
             if(Math.abs(gamepad1.left_stick_y) > 0.5 && Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)) {
-                setPower(gamepad1.left_stick_y / Math.abs(gamepad1.left_stick_y));
+                double d = gamepad1.left_stick_y / Math.abs(gamepad1.left_stick_y);
+                setPower(d, d, d, d);
                 if(gamepad1.left_stick_y > 0)
                 {
                     //going forward
@@ -63,7 +50,8 @@ public class opmode extends LinearOpMode {
                 }
             }
             if(Math.abs(gamepad1.left_stick_x) > 0.5 && Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)) {
-                setPowerSlide(gamepad1.left_stick_x / Math.abs(gamepad1.left_stick_x));
+                double d = gamepad1.left_stick_x / Math.abs(gamepad1.left_stick_x);
+                setPower(d, d, d * -1.0, d * -1.0);
                 if(gamepad1.left_stick_x > 0)
                 {
                     //sliding right
@@ -74,7 +62,8 @@ public class opmode extends LinearOpMode {
                 }
             }
             if(Math.abs(gamepad1.right_stick_x) > 0.5 && Math.abs(gamepad1.right_stick_x) > Math.abs(gamepad1.left_stick_y) && Math.abs(gamepad1.right_stick_x) > Math.abs(gamepad1.left_stick_x)) {
-                setPowerTurn(gamepad1.right_stick_x / Math.abs(gamepad1.right_stick_x) * -1.0);
+                double d = gamepad1.right_stick_x / Math.abs(gamepad1.right_stick_x);
+                setPower(d, d * -1.0, d, d * -1.0);
                 if(gamepad1.right_stick_x > 0)
                 {
                     //turning right
@@ -84,7 +73,7 @@ public class opmode extends LinearOpMode {
                     //turning left
                 }
             }
-            setPower(0);
+            setPower(0, 0, 0, 0);
             telemetry.update();
         }
     }
