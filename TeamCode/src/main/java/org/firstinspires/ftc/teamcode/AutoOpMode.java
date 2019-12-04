@@ -33,18 +33,18 @@ public class AutoOpMode extends LinearOpMode {
         start();
         while(opModeIsActive())
         {
-            if(runTime.seconds() < 10)
-                setPower(f, f, f, f);
+            if(runTime.seconds() < 5)
+                setPower(f, f, f, f); //go forward
+            else if(runTime.seconds() < 10)
+                setPower(b, b, b, b); //go backward
+            else if(runTime.seconds() < 15)
+                setPower(b, b, f, f); //strafe ____
             else if(runTime.seconds() < 20)
-                setPower(b, b, b, b);
+                setPower(f, f, b, b); //strafe ____
+            else if(runTime.seconds() < 25)
+                setPower(f, b, f, b); //turning right
             else if(runTime.seconds() < 30)
-                setPower(b, b, f, f);
-            else if(runTime.seconds() < 40)
-                setPower(f, f, b, b);
-            else if(runTime.seconds() < 50)
-                setPower(f, b, f, b);
-            else if(runTime.seconds() < 60)
-                setPower(b, f, b, f);
+                setPower(b, f, b, f); //turning left
             else
                 setPower(s, s, s, s);
         }
