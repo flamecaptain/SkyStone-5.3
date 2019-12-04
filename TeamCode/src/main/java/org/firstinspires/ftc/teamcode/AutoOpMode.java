@@ -29,30 +29,7 @@ public class AutoOpMode extends LinearOpMode {
         double s = 0;
         runTime.reset();
         start();
-        while(opModeIsActive()){
-            while(runTime.seconds() < 1){
-                setPower(f,f,f,f);
-            }
-            while(runTime.seconds() < 2 && runTime.seconds() >= 1){
-                setPower(b,b,b,b);
-            }
-            while(runTime.seconds() < 3 && runTime.seconds() >= 2){
-                setPower(b,b,f,f);
-            }
-            while(runTime.seconds() < 4 && runTime.seconds() >= 3){
-                setPower(f,f,b,b);
-            }
-            while(runTime.seconds() < 5 && runTime.seconds() >= 4){
-                setPower(f,b,f,b);
-            }
-            while(runTime.seconds() < 6 && runTime.seconds() >= 5){
-                setPower(b,f,b,f);
-            }
-            if (runTime.seconds() >= 6) {
-                setPower(s,s,s,s);
-            }
-        }
-/*        while(opModeIsActive())
+        while(opModeIsActive())
         {
             if(runTime.seconds() < 1)
                 setPower(f, f, f, f);
@@ -68,6 +45,6 @@ public class AutoOpMode extends LinearOpMode {
                 setPower(b, f, b, f);
             else
                 setPower(s, s, s, s);
-        }*/
+        }
     }
 }
