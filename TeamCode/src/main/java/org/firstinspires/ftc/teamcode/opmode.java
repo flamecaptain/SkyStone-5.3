@@ -17,7 +17,6 @@ public class opmode extends LinearOpMode {
         frontLeft = hardwareMap.dcMotor.get("frontLeft");
         clawGrab = hardwareMap.servo.get("clawGrab");
         clawRaise = hardwareMap.dcMotor.get("clawRaise");
-        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         telemetry.addLine("Driver_control");
         telemetry.log().setCapacity(1);
