@@ -24,8 +24,8 @@ public class AutoOpMode extends LinearOpMode {
         backLeft = hardwareMap.dcMotor.get("backLeft");
         frontRight = hardwareMap.dcMotor.get("frontRight");
         frontLeft = hardwareMap.dcMotor.get("frontLeft");
-        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRight.setDirection(DcMotorSimple.Direction.REVERSE);
         double f = .5;
         double b = -.5;
         double s = 0;
@@ -33,17 +33,17 @@ public class AutoOpMode extends LinearOpMode {
         start();
         while(opModeIsActive())
         {
-            if(runTime.seconds() < 4)
+            if(runTime.seconds() < 10)
                 setPower(f, f, f, f);
-            else if(runTime.seconds() < 8)
-                setPower(b, b, b, b);
-            else if(runTime.seconds() < 12)
-                setPower(b, b, f, f);
-            else if(runTime.seconds() < 16)
-                setPower(f, f, b, b);
             else if(runTime.seconds() < 20)
+                setPower(b, b, b, b);
+            else if(runTime.seconds() < 30)
+                setPower(b, b, f, f);
+            else if(runTime.seconds() < 40)
+                setPower(f, f, b, b);
+            else if(runTime.seconds() < 50)
                 setPower(f, b, f, b);
-            else if(runTime.seconds() < 24)
+            else if(runTime.seconds() < 60)
                 setPower(b, f, b, f);
             else
                 setPower(s, s, s, s);
