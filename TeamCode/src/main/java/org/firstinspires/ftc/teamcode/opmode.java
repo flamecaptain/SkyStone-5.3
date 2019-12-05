@@ -23,25 +23,6 @@ public class opmode extends LinearOpMode {
         leftIntake.setPower(power);
         rightIntake.setPower(power);
     }
-    private void switchControls()
-    {
-        if(gp == gamepad1) {
-            backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
-            backRight.setDirection(DcMotorSimple.Direction.REVERSE);
-            frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
-            frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
-            gp = gamepad2;
-        }
-        else if(gp == gamepad2)
-        {
-            backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-            backRight.setDirection(DcMotorSimple.Direction.FORWARD);
-            frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-            frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
-            gp = gamepad1;
-        }
-    }
-    
     public void runOpMode()
     {
         backRight = hardwareMap.dcMotor.get("backRight");
