@@ -26,17 +26,17 @@ public class opmode extends LinearOpMode {
     private void switchControls()
     {
         if(gp == gamepad1) {
-            backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+            backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
             backRight.setDirection(DcMotorSimple.Direction.REVERSE);
-            frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+            frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
             frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
             gp = gamepad2;
         }
         else if(gp == gamepad2)
         {
-            backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+            backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
             backRight.setDirection(DcMotorSimple.Direction.FORWARD);
-            frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+            frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
             frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
             gp = gamepad1;
         }
@@ -54,100 +54,96 @@ public class opmode extends LinearOpMode {
         clawGrab = hardwareMap.servo.get("clawGrab");
         clawPancake = hardwareMap.servo.get("clawPancake");
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        leftIntake.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         gp = gamepad1;
         waitForStart();
         while(opModeIsActive())
         {
-
-        }
-        while(opModeIsActive()) {
-            if(Math.abs(gp.left_stick_y) > 0.5 && Math.abs(gp.left_stick_y) > Math.abs(gp.left_stick_x)) {
-                double d = gp.left_stick_y / Math.abs(gp.left_stick_y);
+            if(gp.left_stick_y != 0)
+            {
+                double d = Math.abs(gp.left_stick_y) / gp.left_stick_y;
                 setPowerWheels(d, d, d, d);
-                if(gp.left_stick_y > 0)
-                {
-                    //going forward
-                }
-                else if(gp.left_stick_y < 0)
-                {
-                    //going backwards
-                }
             }
-            if(Math.abs(gp.left_stick_x) > 0.5 && Math.abs(gp.left_stick_x) > Math.abs(gp.left_stick_y)) {
-                double d = gp.left_stick_x / Math.abs(gp.left_stick_x);
-                setPowerWheels(d, d, d * -1.0, d * -1.0);
-                if(gp.left_stick_x > 0)
-                {
-                    //sliding right
-                }
-                else if(gp.left_stick_x < 0)
-                {
-                    //sliding left
-                }
+            else if(gp.left_stick_x != 0)
+            {
+                double d = Math.abs(gp.left_stick_x) / gp.left_stick_x;
+                setPowerWheels(d, d, d * -1, d * -1);
             }
-            if(Math.abs(gp.right_stick_x) > 0.5 && Math.abs(gp.right_stick_x) > Math.abs(gp.left_stick_y) && Math.abs(gp.right_stick_x) > Math.abs(gp.left_stick_x)) {
-                double d = gp.right_stick_x / Math.abs(gp.right_stick_x);
-                setPowerWheels(d, d * -1.0, d, d * -1.0);
-                if(gp.right_stick_x > 0)
-                {
-                    //turning right
-                }
-                else if(gp.right_stick_x < 0)
-                {
-                    //turning left
-                }
+            else if(gp.right_stick_x != 0)
+            {
+                double d = Math.abs(gp.right_stick_x) / gp.right_stick_x;
+                setPowerWheels(d, d * -1, d, d * -1);
             }
-            if(gp.left_trigger > 0)
+            else
+            {
+                setPowerWheels(0, 0, 0, 0);
+            }
+
+            if(gp.left_trigger != 0)
             {
                 clawGrab.setDirection(Servo.Direction.FORWARD);
-                clawGrab.setPosition(gp.left_trigger);
+                clawGrab.setPosition(clawGrab.getPosition() + 0.1);
             }
-            else if(gp.right_trigger > 0)
+            else if(gp.right_trigger != 0)
             {
                 clawGrab.setDirection(Servo.Direction.REVERSE);
-                clawGrab.setPosition(gp.right_trigger);
+                clawGrab.setPosition(clawGrab.getPosition() + 0.1);
             }
-            else if(gp.dpad_up)
+
+            if(gp.dpad_up)
             {
-                clawRaise.setDirection(DcMotorSimple.Direction.FORWARD);
                 clawRaise.setPower(1);
             }
             else if(gp.dpad_down)
             {
-                clawRaise.setDirection(DcMotorSimple.Direction.REVERSE);
-                clawRaise.setPower(1);
+                clawRaise.setPower(-1);
             }
-            else if(gp.dpad_left)
+            else
             {
-                clawPancake.setDirection(Servo.Direction.FORWARD);
-                clawPancake.setPosition(clawPancake.getPosition() + 0.1);
+                clawRaise.setPower(0);
             }
-            else if(gp.dpad_right)
+
+            if(gp.dpad_left)
             {
                 clawPancake.setDirection(Servo.Direction.REVERSE);
                 clawPancake.setPosition(clawPancake.getPosition() + 0.1);
             }
-            if(gp.y)
-                switchControls();
+            else if(gp.dpad_right)
+            {
+                clawPancake.setDirection(Servo.Direction.FORWARD);
+                clawPancake.setPosition(clawPancake.getPosition() + 0.1);
+            }
+
             if(gp.a)
             {
-                if(leftIntake.getPower() != 0)
-                {
-                    setPowerIntake(0);
-                }
-                else
-                {
+                if(leftIntake.getPower() == 0)
                     setPowerIntake(1);
-                }
+                else
+                    setPowerIntake(0);
             }
             if(gp.b)
             {
                 setPowerIntake(-1);
             }
-            setPowerWheels(0, 0, 0, 0);
-            clawRaise.setPower(0);
+            if(gp.y)
+            {
+                if(gp == gamepad1)
+                {
+                    backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+                    backRight.setDirection(DcMotorSimple.Direction.REVERSE);
+                    frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+                    frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+                    gp = gamepad2;
+                }
+                else if(gp == gamepad2)
+                {
+                    backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+                    backRight.setDirection(DcMotorSimple.Direction.FORWARD);
+                    frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+                    frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
+                    gp = gamepad1;
+                }
+            }
         }
     }
 }
