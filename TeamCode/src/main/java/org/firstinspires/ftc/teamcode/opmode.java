@@ -40,17 +40,17 @@ public class opmode extends LinearOpMode {
         waitForStart();
         while(opModeIsActive())
         {
-            if(gp.left_stick_y != 0)
+            if(Math.abs(gp.left_stick_y) > 0.5)
             {
                 double d = Math.abs(gp.left_stick_y) / gp.left_stick_y;
                 setPowerWheels(d, d, d, d);
             }
-            else if(gp.left_stick_x != 0)
+            else if(Math.abs(gp.left_stick_x) > 0.5)
             {
                 double d = Math.abs(gp.left_stick_x) / gp.left_stick_x;
                 setPowerWheels(d, d, d * -1, d * -1);
             }
-            else if(gp.right_stick_x != 0)
+            else if(Math.abs(gp.right_stick_x) > 0.5)
             {
                 double d = Math.abs(gp.right_stick_x) / gp.right_stick_x;
                 setPowerWheels(d, d * -1, d, d * -1);
