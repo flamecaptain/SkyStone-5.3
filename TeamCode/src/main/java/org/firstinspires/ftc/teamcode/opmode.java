@@ -127,4 +127,14 @@ public class opmode extends LinearOpMode {
             }
         }
     }
+    //left stick y: move forward / backward
+    //left stick x: strafe left / right
+    //right stick x: turn left / right
+    //left trigger: apply claw
+    //right trigger: release claw
+    //digital pad up / down: raise / lower claw
+    //digital pad left / right: pancake left / right
+    //a button: toggle intake
+    //b button: outtake?
+    //y button: pass control, reverse wheels
 }
