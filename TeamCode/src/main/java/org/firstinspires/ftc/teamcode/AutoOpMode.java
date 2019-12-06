@@ -7,9 +7,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous
 
 public class AutoOpMode extends LinearOpMode {
-    private DcMotor frontLeft, backLeft, frontRight, backRight;
+    private DcMotor frontLeft, backLeft, frontRight, backRight, leftIntake, rightIntake;
     private ElapsedTime runTime = new ElapsedTime();
-
 
     private void setPower(double bl, double br, double fl, double fr)
     {
@@ -18,14 +17,21 @@ public class AutoOpMode extends LinearOpMode {
         frontLeft.setPower(fl);
         frontRight.setPower(fr);
     }
-
+    private void setPowerIntake(double power)
+    {
+        leftIntake.setPower(power);
+        rightIntake.setPower(power);
+    }
     public void runOpMode(){
         backRight = hardwareMap.dcMotor.get("backRight");
         backLeft = hardwareMap.dcMotor.get("backLeft");
         frontRight = hardwareMap.dcMotor.get("frontRight");
         frontLeft = hardwareMap.dcMotor.get("frontLeft");
+        leftIntake = hardwareMap.dcMotor.get("leftIntake");
+        rightIntake = hardwareMap.dcMotor.get("rightIntake");
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightIntake.setDirection(DcMotorSimple.Direction.REVERSE);
         double f = .5;
         double b = -.5;
         double s = 0;
@@ -33,7 +39,7 @@ public class AutoOpMode extends LinearOpMode {
         start();
         while(opModeIsActive())
         {
-            switch((int)runTime.seconds())
+/*            switch((int)runTime.seconds())
             {
                 case 0: setPower(f, f, f, f); break; //go forward
                 case 2: setPower(s, s, s, s); break; //stop
@@ -47,6 +53,15 @@ public class AutoOpMode extends LinearOpMode {
                 case 14: setPower(s, s, s, s); break; //stop
                 case 15: setPower(b, f, b, f); break; //turn left
                 case 17: setPower(s, s, s, s); break; //stop
+            }*/
+            switch((int)runTime.seconds())
+            {
+                case 0: setPowerIntake(f); break; //intake
+                case 3: setPowerIntake(s); break; //stop
+                case 4: setPowerIntake(b); break; //outtake
+                case 7: setPowerIntake(s); break; //stop
+                case 8: setPowerIntake(f); break; //intake
+                case 11: setPowerIntake(s); break; //stop
             }
         }
     }
