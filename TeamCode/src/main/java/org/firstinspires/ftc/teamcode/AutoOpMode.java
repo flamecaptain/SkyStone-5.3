@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous
 
 public class AutoOpMode extends LinearOpMode {
-    private DcMotor frontLeft, backLeft, frontRight, backRight, leftIntake, rightIntake;
+    private DcMotor frontLeft, backLeft, frontRight, backRight, leftIntake, rightIntake, clawRaise;
     private ElapsedTime runTime = new ElapsedTime();
 
     private void setPower(double bl, double br, double fl, double fr)
@@ -29,9 +29,10 @@ public class AutoOpMode extends LinearOpMode {
         frontLeft = hardwareMap.dcMotor.get("frontLeft");
         leftIntake = hardwareMap.dcMotor.get("leftIntake");
         rightIntake = hardwareMap.dcMotor.get("rightIntake");
+        clawRaise = hardwareMap.dcMotor.get("clawRaise");
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightIntake.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftIntake.setDirection(DcMotorSimple.Direction.REVERSE);
         double f = .5;
         double b = -.5;
         double s = 0;
@@ -56,12 +57,8 @@ public class AutoOpMode extends LinearOpMode {
             }*/
             switch((int)runTime.seconds())
             {
-                case 0: setPowerIntake(f); break; //intake
-                case 3: setPowerIntake(s); break; //stop
-                case 4: setPowerIntake(b); break; //outtake
-                case 7: setPowerIntake(s); break; //stop
-                case 8: setPowerIntake(f); break; //intake
-                case 11: setPowerIntake(s); break; //stop
+                case 0: setPowerIntake(0.75); break;
+                case 10: setPowerIntake(0.75); break;
             }
         }
     }
