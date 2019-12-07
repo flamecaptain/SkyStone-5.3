@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class AutoOpMode extends LinearOpMode {
     private DcMotor frontLeft, backLeft, frontRight, backRight, leftIntake, rightIntake, clawRaise;
+    private Servo foundation;
     private ElapsedTime runTime = new ElapsedTime();
 
     private void setPower(double bl, double br, double fl, double fr)
@@ -30,6 +31,7 @@ public class AutoOpMode extends LinearOpMode {
         leftIntake = hardwareMap.dcMotor.get("leftIntake");
         rightIntake = hardwareMap.dcMotor.get("rightIntake");
         clawRaise = hardwareMap.dcMotor.get("clawRaise");
+        foundation = hardwareMap.servo.get("foundation");
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         leftIntake.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -40,26 +42,7 @@ public class AutoOpMode extends LinearOpMode {
         start();
         while(opModeIsActive())
         {
-/*            switch((int)runTime.seconds())
-            {
-                case 0: setPower(f, f, f, f); break; //go forward
-                case 2: setPower(s, s, s, s); break; //stop
-                case 3: setPower(b, b, b, b); break; //go backward
-                case 5: setPower(s, s, s, s); break; //stop
-                case 6: setPower(b, b, f, f); break; //strafe ____
-                case 8: setPower(s, s, s, s); break; //stop
-                case 9: setPower(f, f, b, b); break; //strafe ____
-                case 11: setPower(s, s, s, s); break; //stop
-                case 12: setPower(f, b, f, b); break; //turn right
-                case 14: setPower(s, s, s, s); break; //stop
-                case 15: setPower(b, f, b, f); break; //turn left
-                case 17: setPower(s, s, s, s); break; //stop
-            }*/
-            switch((int)runTime.seconds())
-            {
-                case 0: setPowerIntake(0.75); break;
-                case 10: setPowerIntake(0.75); break;
-            }
+
         }
     }
 }
