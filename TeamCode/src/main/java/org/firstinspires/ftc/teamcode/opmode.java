@@ -101,10 +101,6 @@ public class opmode extends LinearOpMode {
                 else
                     setPowerIntake(0);
             }
-            if(gamepad1.b)
-            {
-                setPowerIntake(-1);
-            }
             if(gamepad1.y)
             {
                 if(frontRight.getDirection().equals(DcMotorSimple.Direction.FORWARD))
