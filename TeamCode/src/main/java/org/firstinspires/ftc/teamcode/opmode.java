@@ -9,7 +9,6 @@ import org.firstinspires.ftc.robotcore.external.stream.*;
 public class opmode extends LinearOpMode {
     private DcMotor frontLeft, frontRight, backLeft, backRight, clawRaise, leftIntake, rightIntake;
     private Servo clawGrab, clawPancake;
-    private Gamepad gp;
 
     private void setPowerWheels(double bl, double br, double fl, double fr)
     {
@@ -36,23 +35,23 @@ public class opmode extends LinearOpMode {
         clawPancake = hardwareMap.servo.get("clawPancake");
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        gp = gamepad1;
+        leftIntake.setDirection(DcMotorSimple.Direction.REVERSE);
         waitForStart();
         while(opModeIsActive())
         {
-            if(Math.abs(gp.left_stick_y) > 0.5)
+            if(Math.abs(gamepad1.left_stick_y) > 0.5)
             {
-                double d = Math.abs(gp.left_stick_y) / gp.left_stick_y;
+                double d = Math.abs(gamepad1.left_stick_y) / gamepad1.left_stick_y;
                 setPowerWheels(d, d, d, d);
             }
-            else if(Math.abs(gp.left_stick_x) > 0.5)
+            else if(Math.abs(gamepad1.left_stick_x) > 0.5)
             {
-                double d = Math.abs(gp.left_stick_x) / gp.left_stick_x;
+                double d = Math.abs(gamepad1.left_stick_x) / gamepad1.left_stick_x;
                 setPowerWheels(d, d, d * -1, d * -1);
             }
-            else if(Math.abs(gp.right_stick_x) > 0.5)
+            else if(Math.abs(gamepad1.right_stick_x) > 0.5)
             {
-                double d = Math.abs(gp.right_stick_x) / gp.right_stick_x;
+                double d = Math.abs(gamepad1.right_stick_x) / gamepad1.right_stick_x;
                 setPowerWheels(d, d * -1, d, d * -1);
             }
             else
@@ -60,22 +59,22 @@ public class opmode extends LinearOpMode {
                 setPowerWheels(0, 0, 0, 0);
             }
 
-            if(gp.left_trigger != 0)
+            if(gamepad1.left_trigger != 0)
             {
                 clawGrab.setDirection(Servo.Direction.FORWARD);
                 clawGrab.setPosition(clawGrab.getPosition() + 0.1);
             }
-            else if(gp.right_trigger != 0)
+            else if(gamepad1.right_trigger != 0)
             {
                 clawGrab.setDirection(Servo.Direction.REVERSE);
                 clawGrab.setPosition(clawGrab.getPosition() + 0.1);
             }
 
-            if(gp.dpad_up)
+            if(gamepad1.dpad_up)
             {
                 clawRaise.setPower(1);
             }
-            else if(gp.dpad_down)
+            else if(gamepad1.dpad_down)
             {
                 clawRaise.setPower(-1);
             }
@@ -84,45 +83,43 @@ public class opmode extends LinearOpMode {
                 clawRaise.setPower(0);
             }
 
-            if(gp.dpad_left)
+            if(gamepad1.dpad_left)
             {
                 clawPancake.setDirection(Servo.Direction.REVERSE);
                 clawPancake.setPosition(clawPancake.getPosition() + 0.1);
             }
-            else if(gp.dpad_right)
+            else if(gamepad1.dpad_right)
             {
                 clawPancake.setDirection(Servo.Direction.FORWARD);
                 clawPancake.setPosition(clawPancake.getPosition() + 0.1);
             }
 
-            if(gp.a)
+            if(gamepad1.a)
             {
                 if(leftIntake.getPower() == 0)
                     setPowerIntake(1);
                 else
                     setPowerIntake(0);
             }
-            if(gp.b)
+            if(gamepad1.b)
             {
                 setPowerIntake(-1);
             }
-            if(gp.y)
+            if(gamepad1.y)
             {
-                if(gp == gamepad1)
+                if(frontRight.getDirection().equals(DcMotorSimple.Direction.FORWARD))
                 {
-                    backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
-                    backRight.setDirection(DcMotorSimple.Direction.REVERSE);
-                    frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
                     frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
-                    gp = gamepad2;
+                    frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+                    backRight.setDirection(DcMotorSimple.Direction.REVERSE);
+                    backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
                 }
-                else if(gp == gamepad2)
+                else if(frontRight.getDirection().equals(DcMotorSimple.Direction.REVERSE))
                 {
-                    backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-                    backRight.setDirection(DcMotorSimple.Direction.FORWARD);
-                    frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
                     frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
-                    gp = gamepad1;
+                    frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+                    backRight.setDirection(DcMotorSimple.Direction.FORWARD);
+                    backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
                 }
             }
         }
@@ -135,6 +132,5 @@ public class opmode extends LinearOpMode {
     //digital pad up / down: raise / lower claw
     //digital pad left / right: pancake left / right
     //a button: toggle intake
-    //b button: outtake?
-    //y button: pass control, reverse wheels
+    //y button: reverse wheel direction
 }
