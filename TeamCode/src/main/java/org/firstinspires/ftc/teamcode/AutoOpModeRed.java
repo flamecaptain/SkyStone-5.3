@@ -48,8 +48,8 @@ public class AutoOpModeRed extends LinearOpMode {
         backright = hardwareMap.dcMotor.get("backRight");
         foundation = hardwareMap.servo.get("foundation");
 
-        frontright.setDirection(DcMotorSimple.Direction.REVERSE);
-        backright.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontleft.setDirection(DcMotorSimple.Direction.REVERSE);
+        backleft.setDirection(DcMotorSimple.Direction.REVERSE);
         //
         waitForStartify();
         //
