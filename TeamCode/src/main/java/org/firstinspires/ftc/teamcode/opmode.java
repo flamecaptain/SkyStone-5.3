@@ -36,7 +36,7 @@ public class opmode extends LinearOpMode {
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         leftIntake.setDirection(DcMotorSimple.Direction.REVERSE);
-        waitForStart();
+        start();
         while(opModeIsActive())
         {
             if(Math.abs(gamepad1.left_stick_y) > 0.5)
