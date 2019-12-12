@@ -42,17 +42,17 @@ public class opmode extends LinearOpMode {
         {
             if(Math.abs(gamepad1.left_stick_y) > 0.5)
             {
-                double d = Math.abs(gamepad1.left_stick_y) / gamepad1.left_stick_y - 0.5;
+                double d = Math.abs(gamepad1.left_stick_y) / gamepad1.left_stick_y - 0.25;
                 setPowerWheels(d, d, d, d);
             }
             else if(Math.abs(gamepad1.left_stick_x) > 0.5)
             {
-                double d = Math.abs(gamepad1.left_stick_x) / gamepad1.left_stick_x - 0.5;
+                double d = Math.abs(gamepad1.left_stick_x) / gamepad1.left_stick_x - 0.25;
                 setPowerWheels(d, d, d * -1, d * -1);
             }
             else if(Math.abs(gamepad1.right_stick_x) > 0.5)
             {
-                double d = Math.abs(gamepad1.right_stick_x) / gamepad1.right_stick_x - 0.5;
+                double d = Math.abs(gamepad1.right_stick_x) / gamepad1.right_stick_x - 0.25;
                 setPowerWheels(d, d * -1, d, d * -1);
             }
             else
