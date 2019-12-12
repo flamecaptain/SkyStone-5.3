@@ -14,8 +14,8 @@ public class TestIntake extends LinearOpMode {
         rightIntake = hardwareMap.dcMotor.get("rightIntake");
         leftIntake.setDirection(DcMotorSimple.Direction.REVERSE);
         start();
-        leftIntake.setPower(1);
-        rightIntake.setPower(1);
+        leftIntake.setPower(0.75);
+        rightIntake.setPower(0.75);
         while(opModeIsActive())
         {
 
