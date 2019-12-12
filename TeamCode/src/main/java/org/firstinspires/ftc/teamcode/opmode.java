@@ -78,12 +78,12 @@ public class opmode extends LinearOpMode {
             if(gamepad1.left_bumper)
             {
                 foundation.setDirection(CRServo.Direction.REVERSE);
-                foundation.setPower(1);
+                foundation.setPower(0.75);
             }
             else if(gamepad1.right_bumper)
             {
                 foundation.setDirection(CRServo.Direction.FORWARD);
-                foundation.setPower(1);
+                foundation.setPower(0.75);
             }
             else
             {
