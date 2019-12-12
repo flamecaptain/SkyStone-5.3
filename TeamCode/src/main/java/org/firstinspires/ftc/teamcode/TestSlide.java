@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class TestSlide extends LinearOpMode {
     private DcMotor leftIntake, rightIntake, clawRaise;
     private Servo clawGrab, clawPancake;
-    private ElapsedTime runTime;
+    private ElapsedTime runTime = new ElapsedTime();
     @Override
     public void runOpMode() throws InterruptedException {
         leftIntake = hardwareMap.dcMotor.get("leftIntake");
@@ -17,7 +17,6 @@ public class TestSlide extends LinearOpMode {
         clawRaise = hardwareMap.dcMotor.get("clawRaise");
         clawGrab = hardwareMap.servo.get("clawGrab");
         clawPancake = hardwareMap.servo.get("clawPancake");
-        runTime = new ElapsedTime();
         leftIntake.setDirection(DcMotorSimple.Direction.REVERSE);
         start();
         runTime.reset();
