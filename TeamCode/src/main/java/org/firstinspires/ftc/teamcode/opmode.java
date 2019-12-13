@@ -4,11 +4,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
 @TeleOp
 public class opmode extends LinearOpMode {
     private DcMotor frontLeft, frontRight, backLeft, backRight, clawRaise, leftIntake, rightIntake;
     private CRServo clawGrab, clawPancake, foundation;
+    private Gamepad gp;
     private void setPowerWheels(double bl, double br, double fl, double fr)
     {
         backLeft.setPower(bl);
@@ -34,38 +36,39 @@ public class opmode extends LinearOpMode {
         clawGrab = hardwareMap.crservo.get("clawGrab");
         clawPancake = hardwareMap.crservo.get("clawPancake");
         foundation = hardwareMap.crservo.get("foundation");
-        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        gp = gamepad1;
+        backRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         leftIntake.setDirection(DcMotorSimple.Direction.REVERSE);
         start();
         while(opModeIsActive())
         {
-            if(Math.abs(gamepad1.left_stick_y) > 0.5)
+            if(Math.abs(gp.left_stick_y) > 0.5)
             {
-                double d = Math.abs(gamepad1.left_stick_y) / gamepad1.left_stick_y - 0.25;
+                double d = Math.abs(gp.left_stick_y) / gp.left_stick_y - 0.4;
                 setPowerWheels(d, d, d, d);
             }
-            else if(Math.abs(gamepad1.left_stick_x) > 0.5)
+            else if(Math.abs(gp.left_stick_x) > 0.5)
             {
-                double d = Math.abs(gamepad1.left_stick_x) / gamepad1.left_stick_x - 0.25;
-                setPowerWheels(d, d, d * -1, d * -1);
+                double d = Math.abs(gp.left_stick_x) / gp.left_stick_x - 0.4;
+                setPowerWheels(d, d * -1, d * -1, d);
             }
-            else if(Math.abs(gamepad1.right_stick_x) > 0.5)
+            else if(Math.abs(gp.right_stick_x) > 0.5)
             {
-                double d = Math.abs(gamepad1.right_stick_x) / gamepad1.right_stick_x - 0.25;
-                setPowerWheels(d, d * -1, d, d * -1);
+                double d = Math.abs(gp.right_stick_x) / gp.right_stick_x - 0.4;
+                setPowerWheels(d * -1, d, d * -1, d);
             }
             else
             {
                 setPowerWheels(0, 0, 0, 0);
             }
 
-            if(gamepad1.left_trigger != 0)
+            if(gp.left_trigger != 0)
             {
                 clawGrab.setDirection(CRServo.Direction.REVERSE);
                 clawGrab.setPower(1);
             }
-            else if(gamepad1.right_trigger != 0)
+            else if(gp.right_trigger != 0)
             {
                 clawGrab.setDirection(CRServo.Direction.FORWARD);
                 clawGrab.setPower(1);
@@ -75,12 +78,12 @@ public class opmode extends LinearOpMode {
                 clawGrab.setPower(0);
             }
 
-            if(gamepad1.left_bumper)
+            if(gp.left_bumper)
             {
                 foundation.setDirection(CRServo.Direction.REVERSE);
                 foundation.setPower(0.75);
             }
-            else if(gamepad1.right_bumper)
+            else if(gp.right_bumper)
             {
                 foundation.setDirection(CRServo.Direction.FORWARD);
                 foundation.setPower(0.75);
@@ -90,11 +93,11 @@ public class opmode extends LinearOpMode {
                 foundation.setPower(0);
             }
 
-            if(gamepad1.dpad_up)
+            if(gp.dpad_up)
             {
                 clawRaise.setPower(0.3);
             }
-            else if(gamepad1.dpad_down)
+            else if(gp.dpad_down)
             {
                 clawRaise.setPower(-0.3);
             }
@@ -103,40 +106,30 @@ public class opmode extends LinearOpMode {
                 clawRaise.setPower(0);
             }
 
-            if (gamepad1.dpad_left)
-                clawPancake.setPower(0.2);
-            else if (gamepad1.dpad_right)
+            if (gp.dpad_left)
                 clawPancake.setPower(-0.2);
+            else if (gp.dpad_right)
+                clawPancake.setPower(0.2);
             else
                 clawPancake.setPower(0);
 
-            if(gamepad1.a)
+            if(gp.a)
             {
                 setPowerIntake(0.75);
             }
-            else if(gamepad1.b)
+            else if(gp.b)
             {
                 setPowerIntake(-0.75);
             }
             else
                 setPowerIntake(0);
 
-            if(gamepad1.y)
+            if(gp.y)
             {
-                if(frontRight.getDirection().equals(DcMotorSimple.Direction.FORWARD))
-                {
-                    frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
-                    frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
-                    backRight.setDirection(DcMotorSimple.Direction.REVERSE);
-                    backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
-                }
-                else if(frontRight.getDirection().equals(DcMotorSimple.Direction.REVERSE))
-                {
-                    frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
-                    frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-                    backRight.setDirection(DcMotorSimple.Direction.FORWARD);
-                    backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-                }
+                if(gp == gamepad1)
+                    gp = gamepad2;
+                else if(gp == gamepad2)
+                    gp = gamepad1;
             }
         }
     }
@@ -151,5 +144,5 @@ public class opmode extends LinearOpMode {
     //digital pad left / right: pancake claw left / right
     //a button: apply intake wheels inward
     //b button: apply intake wheels outward
-    //y button: reverse wheel direction
+    //y button: pass controller
 }
