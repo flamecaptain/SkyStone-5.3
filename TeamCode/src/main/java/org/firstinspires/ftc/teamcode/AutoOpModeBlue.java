@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.CRServo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -21,7 +21,7 @@ public class AutoOpModeBlue extends LinearOpMode {
     DcMotor frontright;
     DcMotor backleft;
     DcMotor backright;
-    Servo foundation;
+    CRServo foundation;
     //28 * 20 / (2ppi * 4.125)
     Double width = 16.0; //inches
     Integer cpr = 28; //counts per rotation
@@ -46,7 +46,7 @@ public class AutoOpModeBlue extends LinearOpMode {
         frontright = hardwareMap.dcMotor.get("frontRight");
         backleft = hardwareMap.dcMotor.get("backLeft");
         backright = hardwareMap.dcMotor.get("backRight");
-        foundation = hardwareMap.servo.get("foundation");
+        foundation = hardwareMap.crservo.get("foundation");
 
         frontleft.setDirection(DcMotorSimple.Direction.REVERSE);
         backleft.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -63,11 +63,11 @@ public class AutoOpModeBlue extends LinearOpMode {
         //
         moveToPosition(-20, 0.3); //move backwards towards foundation
         //
-        foundation.setPosition(0.2);
+        foundation.setPower(0.5);
         //
         moveToPosition(36.6, 0.3); //move towards left wall
         //
-        foundation.setPosition(0.1);
+        foundation.setPower(-0.5);
         //
         strafeToPosition(-26.0, 0.3); //strafe towards loading zone
         //
