@@ -40,23 +40,29 @@ public class opmode extends LinearOpMode {
         backRight.setDirection(DcMotorSimple.Direction.REVERSE);
         frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         leftIntake.setDirection(DcMotorSimple.Direction.REVERSE);
-        start();
+        waitForStart();
         while(opModeIsActive())
         {
             if(Math.abs(gp.left_stick_y) > 0.5)
             {
-                double d = Math.abs(gp.left_stick_y) / gp.left_stick_y - 0.4;
+                double d = 0.6;
+                if(gp.left_stick_y < 0)
+                    d *= -1;
                 setPowerWheels(d, d, d, d);
             }
             else if(Math.abs(gp.left_stick_x) > 0.5)
             {
-                double d = Math.abs(gp.left_stick_x) / gp.left_stick_x - 0.4;
-                setPowerWheels(d, d * -1, d * -1, d);
+                double d = 0.6;
+                if(gp.left_stick_x < 0)
+                    d *= -1;
+                setPowerWheels(d, -d, -d, d);
             }
             else if(Math.abs(gp.right_stick_x) > 0.5)
             {
-                double d = Math.abs(gp.right_stick_x) / gp.right_stick_x - 0.4;
-                setPowerWheels(d * -1, d, d * -1, d);
+                double d = 0.6;
+                if(gp.right_stick_x < 0)
+                    d *= -1;
+                setPowerWheels(-d, d, -d, d);
             }
             else
             {
@@ -107,9 +113,9 @@ public class opmode extends LinearOpMode {
             }
 
             if (gp.dpad_left)
-                clawPancake.setPower(-0.2);
+                clawPancake.setPower(-0.3);
             else if (gp.dpad_right)
-                clawPancake.setPower(0.2);
+                clawPancake.setPower(0.3);
             else
                 clawPancake.setPower(0);
 
