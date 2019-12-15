@@ -43,7 +43,11 @@ public class opmode extends LinearOpMode {
             if(Math.abs(gamepad1.left_stick_y) > 0.5)
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 double d = Math.abs(gamepad1.left_stick_y) / gamepad1.left_stick_y - 0.25;
+=======
+                double d = Math.abs(gp.left_stick_y) / gp.left_stick_y - 0.4;
+>>>>>>> parent of 9b2d210... Update opmode.java
 =======
                 double d = Math.abs(gp.left_stick_y) / gp.left_stick_y - 0.4;
 >>>>>>> parent of 9b2d210... Update opmode.java
@@ -52,8 +56,13 @@ public class opmode extends LinearOpMode {
             else if(Math.abs(gamepad1.left_stick_x) > 0.5)
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 double d = Math.abs(gamepad1.left_stick_x) / gamepad1.left_stick_x - 0.25;
                 setPowerWheels(d, d, d * -1, d * -1);
+=======
+                double d = Math.abs(gp.left_stick_x) / gp.left_stick_x - 0.4;
+                setPowerWheels(d, d * -1, d * -1, d);
+>>>>>>> parent of 9b2d210... Update opmode.java
 =======
                 double d = Math.abs(gp.left_stick_x) / gp.left_stick_x - 0.4;
                 setPowerWheels(d, d * -1, d * -1, d);
@@ -62,8 +71,13 @@ public class opmode extends LinearOpMode {
             else if(Math.abs(gamepad1.right_stick_x) > 0.5)
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 double d = Math.abs(gamepad1.right_stick_x) / gamepad1.right_stick_x - 0.25;
                 setPowerWheels(d, d * -1, d, d * -1);
+=======
+                double d = Math.abs(gp.right_stick_x) / gp.right_stick_x - 0.4;
+                setPowerWheels(d * -1, d, d * -1, d);
+>>>>>>> parent of 9b2d210... Update opmode.java
 =======
                 double d = Math.abs(gp.right_stick_x) / gp.right_stick_x - 0.4;
                 setPowerWheels(d * -1, d, d * -1, d);
@@ -127,6 +141,9 @@ public class opmode extends LinearOpMode {
                 clawPancake.setPower(-0.2);
             else if (gp.dpad_right)
                 clawPancake.setPower(0.2);
+<<<<<<< HEAD
+>>>>>>> parent of 9b2d210... Update opmode.java
+=======
 >>>>>>> parent of 9b2d210... Update opmode.java
             else
                 clawPancake.setPower(0);
