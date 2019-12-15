@@ -4,11 +4,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
 @TeleOp
 public class opmode extends LinearOpMode {
     private DcMotor frontLeft, frontRight, backLeft, backRight, clawRaise, leftIntake, rightIntake;
     private CRServo clawGrab, clawPancake, foundation;
+    private Gamepad gp;
     private void setPowerWheels(double bl, double br, double fl, double fr)
     {
         backLeft.setPower(bl);
@@ -42,46 +44,36 @@ public class opmode extends LinearOpMode {
         {
             if(Math.abs(gamepad1.left_stick_y) > 0.5)
             {
-<<<<<<< HEAD
-<<<<<<< HEAD
                 double d = Math.abs(gamepad1.left_stick_y) / gamepad1.left_stick_y - 0.25;
-=======
                 double d = Math.abs(gp.left_stick_y) / gp.left_stick_y - 0.4;
->>>>>>> parent of 9b2d210... Update opmode.java
-=======
                 double d = Math.abs(gp.left_stick_y) / gp.left_stick_y - 0.4;
->>>>>>> parent of 9b2d210... Update opmode.java
+                double d = Math.abs(gamepad1.left_stick_y) / gamepad1.left_stick_y - 0.25;
                 setPowerWheels(d, d, d, d);
             }
             else if(Math.abs(gamepad1.left_stick_x) > 0.5)
             {
-<<<<<<< HEAD
-<<<<<<< HEAD
                 double d = Math.abs(gamepad1.left_stick_x) / gamepad1.left_stick_x - 0.25;
                 setPowerWheels(d, d, d * -1, d * -1);
-=======
+                double d = Math.abs(gp) / gp.left_stick_x - 0.4;
+                setPowerWheels(d, d * -1, d * -1, d);
                 double d = Math.abs(gp.left_stick_x) / gp.left_stick_x - 0.4;
                 setPowerWheels(d, d * -1, d * -1, d);
->>>>>>> parent of 9b2d210... Update opmode.java
-=======
-                double d = Math.abs(gp.left_stick_x) / gp.left_stick_x - 0.4;
-                setPowerWheels(d, d * -1, d * -1, d);
->>>>>>> parent of 9b2d210... Update opmode.java
             }
             else if(Math.abs(gamepad1.right_stick_x) > 0.5)
             {
-<<<<<<< HEAD
-<<<<<<< HEAD
                 double d = Math.abs(gamepad1.right_stick_x) / gamepad1.right_stick_x - 0.25;
                 setPowerWheels(d, d * -1, d, d * -1);
-=======
                 double d = Math.abs(gp.right_stick_x) / gp.right_stick_x - 0.4;
                 setPowerWheels(d * -1, d, d * -1, d);
->>>>>>> parent of 9b2d210... Update opmode.java
-=======
                 double d = Math.abs(gp.right_stick_x) / gp.right_stick_x - 0.4;
                 setPowerWheels(d * -1, d, d * -1, d);
->>>>>>> parent of 9b2d210... Update opmode.java
+                double d = Math.abs(gamepad1.left_stick_x) / gamepad1.left_stick_x - 0.25;
+                setPowerWheels(d, d, d * -1, d * -1);
+            }
+            else if(Math.abs(gamepad1.right_stick_x) > 0.5)
+            {
+                double d = Math.abs(gamepad1.right_stick_x) / gamepad1.right_stick_x - 0.25;
+                setPowerWheels(d, d * -1, d, d * -1);
             }
             else
             {
@@ -130,21 +122,14 @@ public class opmode extends LinearOpMode {
             {
                 clawRaise.setPower(0);
             }
-
-<<<<<<< HEAD
             if (gamepad1.dpad_left)
                 clawPancake.setPower(0.2);
             else if (gamepad1.dpad_right)
                 clawPancake.setPower(-0.2);
-=======
             if (gp.dpad_left)
                 clawPancake.setPower(-0.2);
             else if (gp.dpad_right)
                 clawPancake.setPower(0.2);
-<<<<<<< HEAD
->>>>>>> parent of 9b2d210... Update opmode.java
-=======
->>>>>>> parent of 9b2d210... Update opmode.java
             else
                 clawPancake.setPower(0);
 
@@ -174,6 +159,7 @@ public class opmode extends LinearOpMode {
                     frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
                     backRight.setDirection(DcMotorSimple.Direction.FORWARD);
                     backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+                }
                 }
             }
         }
