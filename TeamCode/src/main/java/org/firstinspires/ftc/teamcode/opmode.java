@@ -42,35 +42,7 @@ public class opmode extends LinearOpMode {
         start();
         while(opModeIsActive())
         {
-            if(Math.abs(gamepad1.left_stick_y) > 0.5)
-            {
-                double d = Math.abs(gamepad1.left_stick_y) / gamepad1.left_stick_y - 0.25;
-                double d = Math.abs(gp.left_stick_y) / gp.left_stick_y - 0.4;
-                double d = Math.abs(gp.left_stick_y) / gp.left_stick_y - 0.4;
-                double d = Math.abs(gamepad1.left_stick_y) / gamepad1.left_stick_y - 0.25;
-                setPowerWheels(d, d, d, d);
-            }
-            else if(Math.abs(gamepad1.left_stick_x) > 0.5)
-            {
-                double d = Math.abs(gamepad1.left_stick_x) / gamepad1.left_stick_x - 0.25;
-                setPowerWheels(d, d, d * -1, d * -1);
-                double d = Math.abs(gp) / gp.left_stick_x - 0.4;
-                setPowerWheels(d, d * -1, d * -1, d);
-                double d = Math.abs(gp.left_stick_x) / gp.left_stick_x - 0.4;
-                setPowerWheels(d, d * -1, d * -1, d);
-            }
-            else if(Math.abs(gamepad1.right_stick_x) > 0.5)
-            {
-                double d = Math.abs(gamepad1.right_stick_x) / gamepad1.right_stick_x - 0.25;
-                setPowerWheels(d, d * -1, d, d * -1);
-                double d = Math.abs(gp.right_stick_x) / gp.right_stick_x - 0.4;
-                setPowerWheels(d * -1, d, d * -1, d);
-                double d = Math.abs(gp.right_stick_x) / gp.right_stick_x - 0.4;
-                setPowerWheels(d * -1, d, d * -1, d);
-                double d = Math.abs(gamepad1.left_stick_x) / gamepad1.left_stick_x - 0.25;
-                setPowerWheels(d, d, d * -1, d * -1);
-            }
-            else if(Math.abs(gamepad1.right_stick_x) > 0.5)
+            if(Math.abs(gamepad1.right_stick_x) > 0.5)
             {
                 double d = Math.abs(gamepad1.right_stick_x) / gamepad1.right_stick_x - 0.25;
                 setPowerWheels(d, d * -1, d, d * -1);
@@ -176,4 +148,3 @@ public class opmode extends LinearOpMode {
     //a button: apply intake wheels inward
     //b button: apply intake wheels outward
     //y button: reverse wheel direction
-}

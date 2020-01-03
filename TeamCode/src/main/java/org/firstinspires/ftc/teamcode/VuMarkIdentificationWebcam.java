@@ -28,7 +28,6 @@
  */
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -115,7 +114,7 @@ public class VuMarkIdentificationWebcam extends LinearOpMode {
          * Once you've obtained a license key, copy the string from the Vuforia web site
          * and paste it in to your code on the next line, between the double quotes.
          */
-        parameters.vuforiaLicenseKey = " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
+        parameters.vuforiaLicenseKey = "ARAcHmb/////AAABmdKWGmLaVkfunxi3zHut0ixX66ybfomfYaggBxYfNEH1ykXbDcszSgoU4qPwWWcO8e2rArv5bsK2ilefGCb+42Ijr/GZXbIsuxQSzzp7qHiFR71MjmozfNiaRCzUIPL5Tbit26z90iKMHkgxudhCpRqCmJiHghvLs9wGjY83MNLNrFAMiLfoKQX3Ao4iOFXm4qHr1h1ZlD2osVt0hMlF9w0jH9u+mLH8p60550r2zQIdmDK18ufuYbbCnSOwGBrdfpr+IE0Qj2zjENGftNEwhI2sI2L8eYr0994k86wt17oHs8mn4yRbJmIYhjCO+G2jv1o3PMrRhI0fzKJq1qQb6BIrikP9LKXPDlpFa5tMA4vQ";
 
 
         /**
